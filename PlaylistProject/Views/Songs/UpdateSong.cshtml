@@ -1,0 +1,18 @@
+﻿@model Songs
+
+<h2>Update @Model.SongName</h2>
+
+@using (Html.BeginForm("UpdateSongsToDatabase", "Songs", "Post"))
+{
+    <input asp-for="SongID" type="hidden" value="@Model.SongID" />
+
+    <label asp-for="SongName" class="control-label">SongName</label>
+    <input type="text" name="SongName" class="form-control" value="@Model.SongName" />
+
+    <label asp-for="SongArtist" class="control-label">SongArtist</label>
+    <input type="text" name="SongArtist" class="form-control" value="@Model.SongArtist" />
+
+    <input type="submit" value="Update Song" class="btn btn-primary" />
+}
+
+
