@@ -3,10 +3,10 @@ namespace PlaylistProject.Models
 {
 	public interface ISongsRepository
 	{
-        public IEnumerable<Songs> GetAllSongs();
-		public Songs GetSong(int id);
-		public void UpdateSong(Songs song);
-
+        public IEnumerable<Song> GetAllSongs();
+		public Song GetSong(int id);
+		public void UpdateSong(Song song);
+		public void DeleteSong(Song song);
 	}
 }
 

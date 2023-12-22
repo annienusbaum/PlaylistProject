@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Org.BouncyCastle.Utilities;
 using PlaylistProject.Models;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -35,7 +36,7 @@ namespace PlaylistProject.Controllers
 
         public IActionResult UpdateSong(int id)
         {
-            Songs song = repo.GetSong(id);
+            Song song = repo.GetSong(id);
             if (song == null)
             {
                 return View("SongNotFound");
@@ -43,17 +44,22 @@ namespace PlaylistProject.Controllers
             return View(song);
         }
 
-        public IActionResult UpdateSongsToDatabase(Songs song)
+        public IActionResult UpdateSongsToDatabase(Song song)
         {
             repo.UpdateSong(song);
 
             return RedirectToAction("ViewSong", new { id = song.SongID });
         }
 
-
+        public IActionResult DeleteSong(Song songs)
+        {
+            repo.DeleteSong(songs);
+            return RedirectToAction("Index");
+        }
     }
 }
 
+//return RedirectToAction("Songs");
 //the method called Index corresponds with the Index View I created
 //Each method in our SongsController will correspond to a particular View that we have created.
 //this controller IActionResult is connecting the model to the view -
