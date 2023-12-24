@@ -34,6 +34,11 @@ namespace PlaylistProject.Controllers
             return View(songs);
         }
 
+        public IActionResult AddToPlaylist()
+        {
+            return RedirectToPage("Playlist");
+        }
+
         public IActionResult UpdateSong(int id)
         {
             Song song = repo.GetSong(id);

@@ -23,6 +23,9 @@ namespace PlaylistProject.Models
             return _conn.Query<Song>("SELECT * FROM Songs;");
         }
 
+        //another method for getallplaylists with the same table and use the samme type
+        //SELECT * FROM Playlists
+
         public Song GetSong(int id)
         {
             return _conn.QuerySingle<Song>("SELECT * FROM SONGS WHERE SongID = @id",

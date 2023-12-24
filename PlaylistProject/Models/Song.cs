@@ -8,7 +8,7 @@ namespace PlaylistProject.Models
         public string? Artist { get; set; }
 		public string Genre { get; set; } = string.Empty;
 		public string Video { get; set; } = string.Empty;
-
+		public bool Selected { get; set; } 
     }
 }
 
