@@ -10,11 +10,11 @@ using PlaylistProject.Models;
 
 namespace PlaylistProject.Controllers
 {
-    public class SongsController : Controller
+    public class SongController : Controller
     {
-        private readonly ISongsRepository repo;
+        private readonly ISongRepository repo;
 
-        public SongsController(ISongsRepository repo)
+        public SongController(ISongRepository repo)
         {
             this.repo = repo;
         }

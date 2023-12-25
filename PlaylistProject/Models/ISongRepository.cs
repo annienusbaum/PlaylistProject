@@ -1,7 +1,7 @@
 ﻿using System;
 namespace PlaylistProject.Models
 {
-	public interface ISongsRepository
+	public interface ISongRepository
 	{
         public IEnumerable<Song> GetAllSongs();
 		public Song GetSong(int id);

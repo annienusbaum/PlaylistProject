@@ -15,7 +15,7 @@ builder.Services.AddScoped<IDbConnection>((s) =>
 });
 
 
-builder.Services.AddTransient<ISongsRepository, SongsRepository>();
+builder.Services.AddTransient<ISongRepository, SongRepository>();
 
 var app = builder.Build();
 

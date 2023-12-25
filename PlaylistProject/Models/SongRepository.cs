@@ -4,11 +4,11 @@ using Dapper;
 
 namespace PlaylistProject.Models
 {
-	public class SongsRepository : ISongsRepository
+	public class SongRepository : ISongRepository
 	{
         private readonly IDbConnection _conn;
 
-        public SongsRepository(IDbConnection conn)
+        public SongRepository(IDbConnection conn)
 		{
             _conn = conn;
 		}
@@ -37,6 +37,8 @@ namespace PlaylistProject.Models
             _conn.Execute("UPDATE songs SET Name = @name, Artist = @artist WHERE SongID = @id",
                 new { name = song.Name, artist = song.Artist, id = song.SongID });
         }
+
+
     }
 }
 

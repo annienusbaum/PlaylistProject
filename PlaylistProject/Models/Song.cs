@@ -12,6 +12,8 @@ namespace PlaylistProject.Models
     }
 }
 
-//classes not enumerable - don't make plural
-//a list of type song would be a list of songs. you wouldnt call a class(blueprint
-//songs
+//STEP ONE:
+/*
+ * Song Model class with properties to correspond with each of my table columns 
+ * mySQL database
+ */
