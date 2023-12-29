@@ -12,8 +12,3 @@ namespace PlaylistProject.Models
     }
 }
 
-//STEP ONE:
-/*
- * Song Model class with properties to correspond with each of my table columns 
- * mySQL database
- */

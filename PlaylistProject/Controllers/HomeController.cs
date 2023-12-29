@@ -8,6 +8,9 @@ public class HomeController : Controller
 {
     private readonly ILogger<HomeController> _logger;
 
+    [BindProperty]
+    public string Genre { get; set; }
+
     public HomeController(ILogger<HomeController> logger)
     {
         _logger = logger;
@@ -17,6 +20,13 @@ public class HomeController : Controller
     {
         return View();
     }
+
+    [HttpPost]
+    public IActionResult SubmitFormOnPost() //action for form submission
+    {
+        return RedirectToPage("/Playlist");
+    }
+
 
     public IActionResult Privacy()
     {

@@ -15,9 +15,11 @@
   <ItemGroup>
     <None Remove="Views\Songs\" />
     <None Remove="Views\Playlists\" />
+    <None Remove="Repository\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Songs\" />
     <Folder Include="Views\Playlists\" />
+    <Folder Include="Repository\" />
   </ItemGroup>
 </Project>

@@ -1,9 +1,20 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
+@model HomeModel
 
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <h2>Choose Genre to Begin</h2>
+    <form method="post" class="d-flex flex-column">
+        <select asp-for="Genre" class="mx-auto form-select form-select-lg mb-5" aria-label="Large select example" style="max-width:400px;">
+            <option selected>Choose a genre to begin</option>
+            <option value="Guitar">Guitar</option>
+            <option value="Piano">Piano</option>
+            <option value="Ambient">Ambient</option>
+            <option value="Ethereal">Ethereal</option>
+        </select>
+        <button type="submit" asp-action="SubmitFormOnPost" class="mx-auto btn btn-primary btn-lg">Create</button>
+    </form>
 </div>
 
