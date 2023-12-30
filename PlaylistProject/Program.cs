@@ -1,5 +1,7 @@
 ﻿using MySql.Data.MySqlClient;
+using PlaylistProject;
 using PlaylistProject.Models;
+using PlaylistProject.Repository;
 using System.Data;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -14,8 +16,8 @@ builder.Services.AddScoped<IDbConnection>((s) =>
     return conn;
 });
 
-
-builder.Services.AddTransient<ISongRepository, SongRepository>();
+builder.Services.AddTransient<IPlaylistRepository, PlaylistRepository>();
+builder.Services.AddTransient<IMySongRepository, MySongRepository>();
 
 var app = builder.Build();
 

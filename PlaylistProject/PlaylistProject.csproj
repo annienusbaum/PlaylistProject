@@ -13,13 +13,11 @@
     <PackageReference Include="Dapper" Version="2.1.24" />
   </ItemGroup>
   <ItemGroup>
-    <None Remove="Views\Songs\" />
-    <None Remove="Views\Playlists\" />
     <None Remove="Repository\" />
+    <None Remove="Views\Playlist\" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Views\Songs\" />
-    <Folder Include="Views\Playlists\" />
     <Folder Include="Repository\" />
+    <Folder Include="Views\Playlist\" />
   </ItemGroup>
 </Project>

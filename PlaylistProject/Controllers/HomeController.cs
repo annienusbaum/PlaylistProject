@@ -24,16 +24,11 @@ public class HomeController : Controller
     [HttpPost]
     public IActionResult SubmitFormOnPost() //action for form submission
     {
-        return RedirectToPage("/Playlist");
+        return RedirectToAction("Index", "Playlist", new { Genre = Genre });
     }
 
 
     public IActionResult Privacy()
-    {
-        return View();
-    }
-
-    public IActionResult Playlist()
     {
         return View();
     }
