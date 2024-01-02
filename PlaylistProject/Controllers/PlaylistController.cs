@@ -22,6 +22,7 @@ namespace PlaylistProject.Controllers
             _playlistRepository = playlistRepository;
             _songRepository = songRepository;
         }
+
         // GET: /<controller>/
         public IActionResult Index(string genre)
         {
@@ -37,7 +38,27 @@ namespace PlaylistProject.Controllers
             return View(Songs);
 
             }
+
+
         }
     }
 
 
+/*
+ * (ending at line 17, I have defined a controller class named PlaylistController. 
+ * This class has two private fields (_playlistRepository and _songRepository) 
+ * injected through its constructor. 
+ * These repositories will be responsible for interacting with the data storage (presumably a database) for playlists and songs. 
+ * The Songs property is a list of Song objects, 
+ * presumably used to store and pass song data within the controller.
+public IActionResult UpdateProduct(int id)
+{
+    Product prod = repo.GetProduct(id);
+    if (prod == null)
+    {
+        return View("ProductNotFound");
+    }
+    return View(prod);
+}
+
+ */
