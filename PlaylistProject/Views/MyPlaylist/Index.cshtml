@@ -1,0 +1,59 @@
+﻿@{
+    ViewData["Title"] = "Playlist";
+}
+<h1>Playlist name successfully updated</h1>
+
+@model MyPlayList
+
+<h1>@Model.PlaylistName</h1>
+<form method="post">
+    <label class="form-label d-block">
+        Playlist Name
+        <input asp-for="PlaylistName" class="form-control form-control-lg" type="text"
+               placeholder="Enter a name for you playlist" aria-label=".form-control-lg
+
+
+
+ example">
+    </label> <button asp-action="UpdatePlaylistOnPost" class="btn btn-primary btn-lg mb-3 me-3">
+        Update playlist name
+    </button>
+    <button asp-action="DeletePlaylistOnPost" class="btn btn-danger btn-lg mb-3">
+        Delete playist
+    </button>
+    <input type="hidden" aria-hidden="True" class="d-none" name="PlaylistId"
+           value="@ViewData["PlaylistId"]" />
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Artist</th>
+                <th scope="col">Genre</th>
+                <th scope="col">Name</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var song in @Model.Songs)
+            {
+
+                <tr asp-for="@song">
+                    <td aria-hidden="true" class="d-none">
+                        <input asp-for="@song.SongID" />
+                    </td>
+                    <td>
+                        @song.Artist
+                    </td>
+                    <td>@song.Genre</td>
+                    <td>@song.Name</td>
+                    @if (!string.IsNullOrEmpty(song.Video))
+                    {
+                        <td>
+                            <iframe width="560" height="315" src="@song.Video" title="YouTube video player"
+                                    frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-inpicture; web-share" allowfullscreen></iframe>
+                        </td>
+                    }
+                </tr>
+            }
+        </tbody>
+    </table>
+</form>

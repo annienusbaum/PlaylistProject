@@ -15,10 +15,12 @@
   <ItemGroup>
     <None Remove="Repository\" />
     <None Remove="Views\Playlist\" />
+    <None Remove="Views\MyPlaylist\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Repository\" />
     <Folder Include="Views\Playlist\" />
+    <Folder Include="Views\MyPlaylist\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\.editorconfig" />

@@ -40,10 +40,10 @@ public class MyPlaylistController : Controller
                 Songs = songs,
                 PlaylistName = playlistName
             });
-        } 
+        }
 
         [HttpPost]
-    public IActionResult UpdatePlaylistOnPost(string playlistName)
+        public IActionResult UpdatePlaylistOnPost(string playlistName)
         {
             var playlist = new Playlist()
             {
