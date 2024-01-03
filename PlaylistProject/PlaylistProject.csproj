@@ -20,4 +20,7 @@
     <Folder Include="Repository\" />
     <Folder Include="Views\Playlist\" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="..\.editorconfig" />
+  </ItemGroup>
 </Project>

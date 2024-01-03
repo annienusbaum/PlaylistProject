@@ -23,25 +23,70 @@ namespace PlaylistProject.Controllers
             _songRepository = songRepository;
         }
 
-        // GET: /<controller>/
+        [HttpGet]
         public IActionResult Index(string genre)
         {
             Songs = new List<Song>();
             try
             {
                 Songs = _songRepository.GetSongsByGenre(genre);
-            }   catch (Exception e)
+            }
+            catch (Exception e)
             {
-                    Console.WriteLine(e);
+                Console.WriteLine(e);
                 throw;
             }
-            return View(Songs);
-
-            }
-
+            return View(new MyPlaylist() { Songs = Songs });
 
         }
+
+        [HttpPost]
+        public IActionResult SavePlaylistOnPost(MyPlayList myPlayList)
+        {
+            var playlist = new Playlist()
+            {
+                Name = myPlayList.Playlist.PlaylistName,
+                CreatedAt = DateTime.Now
+            };
+
+            int newPlaylistId;
+            try
+            {
+                newPlaylistId = _playlistRepository.CreatePlaylist(playlist);
+                 catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+
+            if (Request.Form.TryGetValue("song.SongID", out var songIds))
+            {
+                var mySongs = new List<MySong>();
+                foreach (var songId in songIds)
+                {
+                    if (int.TryParse(songId, out var id))
+                    {
+                        mySongs.Add(new MySong() { PlaylistId = newPlaylistId, SongId = id });
+                    }
+
+                    try
+                    {
+                        _songRepository.AddSongs(mySongs);
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine(e);
+                        throw;
+                    }
+                    return RedirectToAction("Index", "MyPlaylist", new { PlaylistId = playlist.Id, PlaylistName = playlist.Name });
+                }
+
+                return RedirectToAction("Index");
+            }
+        }
     }
+
+}
 
 
 /*
