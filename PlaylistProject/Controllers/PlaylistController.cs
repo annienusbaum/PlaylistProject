@@ -41,11 +41,11 @@ namespace PlaylistProject.Controllers
         }
 
         [HttpPost]
-        public IActionResult SavePlaylistOnPost(MyPlayList myPlayList)
+        public IActionResult SavePlaylistOnPost(MyPlaylist myPlaylist)
         {
             var playlist = new Playlist()
             {
-                Name = myPlayList.Playlist.PlaylistName,
+                Id = myPlaylist.PlaylistName,
                 CreatedAt = DateTime.Now
             };
 
@@ -53,10 +53,11 @@ namespace PlaylistProject.Controllers
             try
             {
                 newPlaylistId = _playlistRepository.CreatePlaylist(playlist);
-                 catch (Exception e)
+            }
+            catch (Exception e)
             {
                 Console.WriteLine(e);
-                throw;
+                return RedirectToPage("Error");
             }
 
             if (Request.Form.TryGetValue("song.SongID", out var songIds))
@@ -68,21 +69,24 @@ namespace PlaylistProject.Controllers
                     {
                         mySongs.Add(new MySong() { PlaylistId = newPlaylistId, SongId = id });
                     }
-
+                    //loop - insert data into the loop
+                    //foreach - passing in a list into mysongs and a list in
                     try
                     {
-                        _songRepository.AddSongs(mySongs);
+                        //_songRepository.AddSongs(mySongs);
                     }
                     catch (Exception e)
                     {
                         Console.WriteLine(e);
                         throw;
                     }
-                    return RedirectToAction("Index", "MyPlaylist", new { PlaylistId = playlist.Id, PlaylistName = playlist.Name });
+                    return RedirectToAction("Index", "MyPlaylist", new { PlaylistId = playlist.Id, PlaylistName = playlist.Id });
                 }
 
                 return RedirectToAction("Index");
             }
+
+            return RedirectToPage("Error");
         }
     }
 

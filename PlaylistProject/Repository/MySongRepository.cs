@@ -18,15 +18,31 @@ namespace PlaylistProject.Models
             return _connection.Query<Song>("SELECT * FROM Songs WHERE Genre = @Genre", new { Genre = genre }).ToList();
         }
 
-        public int AddSongs(List<MySong> mySongs)
+        public int AddSongs(List<MySong> mySongs, int playlistId)
         {
             throw new NotImplementedException();
+            //foreach songs in mysongs conneection.Execute INSERTINTO MySongs WHERE SongId, pass in playlistid (will need to add a new parameter for playlistid
+            // will have to be added to the interface as well
+        }
+
+        //List<Song> IMySongRepository.GetSongsByPlaylistId(int playlistId)
+        //{
+        //  {
+        //const string Sql = ("INSERT INTO MySongs WHERE Id = @Id, Name = @Name, CreatedAt = @CreatedAt, ModifiedAt = @ModifiedAt", new { Playlist = playlistId });
+        //return _connection.ExecuteScalar<Playlist>
+        // }
+        //}
+
+        public void UpdatePlaylist(Playlist playlist)
+        {
+            _connection.Execute("UPDATE MySong SET Id = @Id, PlaylistId = @PlaylistId, SongId = @SongId WHERE Id = @Id", new { Id = playlist.Id, PlaylistId = playlist.PlaylistId, SongId = playlist.SongId });
+
+
         }
 
         public List<Song> GetSongsByPlaylistId(int playlistId)
         {
-            {
-                throw new NotImplementedException();
-            }
+            throw new NotImplementedException();
         }
+    }
 }

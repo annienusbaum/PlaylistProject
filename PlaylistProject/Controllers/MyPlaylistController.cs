@@ -26,7 +26,7 @@ public class MyPlaylistController : Controller
 
         try
         {
-            songs = _mySongRepository.GetSongsByPlaylistId(playlistId);
+            //songs = _mySongRepository.GetSongsByPlaylistId(playlistId);
         }
         catch (Exception e)
         {
@@ -34,58 +34,57 @@ public class MyPlaylistController : Controller
             throw;
         }
         ViewData["PlaylistId"] = playlistId;
-        {
-            return View(new Models.MyPlayList()
-            {
-                Songs = songs,
-                PlaylistName = playlistName
-            });
-        }
 
-        [HttpPost]
-        public IActionResult UpdatePlaylistOnPost(string playlistName)
+        return View(new Models.MyPlaylist()
         {
-            var playlist = new Playlist()
-            {
-                ModifiedAt = DateTime.Now,
-                Name = playlistName
-            };
-            try
-            {
-                _playlistRepository.UpdatePlaylist(playlist);
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                throw;
-            }
-            return RedirectToAction("UpdateSuccessful");
-        }
+            Songs = songs,
+            PlaylistName = playlistName
+        });
+    }
 
-        [HttpPost]
-        public IActionResult DeletePlaylistOnPost(int playlistId)
-        {       // Delete the playlist from the database
-            try
-            {
-                _playlistRepository.DeletePlaylist(playlistId);
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                throw;
-            }
-            return RedirectToAction("DeleteSuccessful");
-        }
-
-        public IActionResult UpdateSuccessful()
+    [HttpPost]
+    public IActionResult UpdatePlaylistOnPost(string playlistName)
+    {
+        var playlist = new Playlist()
         {
-            return View("UpdateSuccessful");
-        }
-
-        public IActionResult DeleteSuccessful()
+            ModifiedAt = DateTime.Now,
+            Id = playlistName,
+        };
+        try
         {
-            return View("DeleteSuccessful");
+            _playlistRepository.UpdatePlaylist(playlist);
         }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+        return RedirectToAction("UpdateSuccessful");
+    }
+
+    [HttpPost]
+    public IActionResult DeletePlaylistOnPost(int playlistId)
+    {       // Delete the playlist from the database
+        try
+        {
+            //_playlistRepository.DeletePlaylist(playlistId);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+        return RedirectToAction("DeleteSuccessful");
+    }
+
+    public IActionResult UpdateSuccessful()
+    {
+        return View("UpdateSuccessful");
+    }
+
+    public IActionResult DeleteSuccessful()
+    {
+        return View("DeleteSuccessful");
     }
 }
 
