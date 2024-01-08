@@ -25,7 +25,7 @@ namespace PlaylistProject
             return _connection.Query<Playlist>("SELECT * FROM Playlists");
         }
 
-        public int UpdatePlaylist(Playlist playlist)
+        public int UpdatePlaylistId(Playlist playlistId)
         {
             return _connection.ExecuteScalar<int>("UPDATE Playlists SET Name=@Name Where Id = @Id”, new {playlist.Name}", new { Id = playlist.Id, PlaylistId = playlist.PlaylistId, SongId = playlist.SongId });
 
@@ -35,6 +35,11 @@ namespace PlaylistProject
         public int DeletePlaylist(Playlist playlistId)
         {
             return _connection.Execute("DELETE FROM Playlist WHERE Id = @Id, PlaylistId = @playlistid, SongId = @SongId", new { Id = playlistId.PlaylistId });
+        }
+
+        public int UpdatePlaylist(Playlist playlist)
+        {
+            throw new NotImplementedException();
         }
 
         public void DeletePlaylist(int playlistId)

@@ -35,8 +35,9 @@ namespace PlaylistProject.Models
 
         public void UpdatePlaylist(Playlist playlist)
         {
-            _connection.Execute("UPDATE MySong SET Id = @Id, PlaylistId = @PlaylistId, SongId = @SongId WHERE Id = @Id", new { Id = playlist.Id, PlaylistId = playlist.PlaylistId, SongId = playlist.SongId });
+            _ = _connection.Execute("UPDATE MySong SET Id = @Id, PlaylistId = @PlaylistId, SongId = @SongId WHERE Id = @Id", new { Id = playlist.Id, PlaylistId = playlist.PlaylistId, SongId = playlist.SongId });
 
+            //    _connection.Execute("UPDATE MySong SET Id = @Id, PlaylistId = @PlaylistId, SongId = @SongId WHERE Id = @Id", new { Id = playlist.Id, PlaylistId = playlist.PlaylistId, SongId = playlist.SongId });
 
         }
 
@@ -44,5 +45,16 @@ namespace PlaylistProject.Models
         {
             throw new NotImplementedException();
         }
+
+        public void DeletePlaylist(int id)
+        {
+            _connection.Execute("DELETE FROM playlists WHERE Id = @Id", new { Id = id });
+        }
+
+        public void DeleteSongFromPlaylist(int playlistId, int songId)
+        {
+            _connection.Execute("DELETE FROM MySongs WHERE PlaylistId = @PlaylistId AND SongId = @SongId", new { PlaylistId = playlistId, SongId = songId });
+        }
+
     }
 }

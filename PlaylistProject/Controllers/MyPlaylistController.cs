@@ -21,7 +21,7 @@ public class MyPlaylistController : Controller
     }
 
     public IActionResult Index(int playlistId, string playlistName)
-    {
+    {//query the songs for the given playlistId(MySongs table) -- do a JOIN on the SongId and FILTER by playlistId var songs = new List<Song>();
         var songs = new List<Song>();
 
         try
