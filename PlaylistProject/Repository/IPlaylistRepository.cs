@@ -8,7 +8,9 @@ namespace PlaylistProject
     {
         public int UpdatePlaylist(Playlist playlist);
         public int CreatePlaylist(Playlist playlist);
-        public void DeletePlaylist(int playlistId);
+        public int DeletePlaylist(int playlistId);
+        public IEnumerable<Playlist> GetPlaylists();
+
     }
 
 }

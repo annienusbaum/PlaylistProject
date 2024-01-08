@@ -2,11 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 using Microsoft.AspNetCore.Mvc;
 using PlaylistProject.Models;
 using PlaylistProject.Repository;
-
-// For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace PlaylistProject.Controllers
 {
@@ -41,34 +40,39 @@ namespace PlaylistProject.Controllers
         }
 
         [HttpPost]
-        public IActionResult SavePlaylistOnPost(MyPlaylist myPlaylist)
-        {
+        public IActionResult SavePlaylistOnPost(string playlistName)
+
+        {//Save the playlist
             var playlist = new Playlist()
-            {
-                Id = myPlaylist.PlaylistName,
-                CreatedAt = DateTime.Now
+            {//(originally was) Name = myPlaylist.PlaylistName. changed to Id=
+                CreatedAt = DateTime.Now,
+                Name = playlistName
             };
 
             int newPlaylistId;
             try
             {
-                newPlaylistId = _playlistRepository.CreatePlaylist(playlist);
+                newPlaylistId = _playlistRepository.CreatePlaylist(playlist); // PUT BREAKPOINTS HERE LINE 55
+                //Will need to return the id of the new playlist. see learndapper query
+                //selecting scarlar-values
             }
             catch (Exception e)
             {
                 Console.WriteLine(e);
+                //throw & delete line below
                 return RedirectToPage("Error");
             }
-
-            if (Request.Form.TryGetValue("song.SongID", out var songIds))
+            //Get the song ids submitted with the form
+            if (Request.Form.TryGetValue("song.SongID", out var songIds)) //PUT BREAKPOINT HERE AT 66
             {
                 var mySongs = new List<MySong>();
-                foreach (var songId in songIds)
+                foreach (var songId in songIds) //make sure that each song id is of type int
                 {
                     if (int.TryParse(songId, out var id))
-                    {
+                    {//Add the new song to my MySongs
                         mySongs.Add(new MySong() { PlaylistId = newPlaylistId, SongId = id });
                     }
+                    //Save my songs to the MySongs table
                     //loop - insert data into the loop
                     //foreach - passing in a list into mysongs and a list in
                     try
@@ -80,9 +84,9 @@ namespace PlaylistProject.Controllers
                         Console.WriteLine(e);
                         throw;
                     }
-                    return RedirectToAction("Index", "MyPlaylist", new { PlaylistId = playlist.Id, PlaylistName = playlist.Id });
+                    return RedirectToAction("Index", "MyPlaylist", new { PlaylistId = playlist.Id, PlaylistName = playlist.Id }); // try playlist.Name? originally in Will's guide
                 }
-
+                //something went wrong reload the page.
                 return RedirectToAction("Index");
             }
 
@@ -97,17 +101,8 @@ namespace PlaylistProject.Controllers
  * (ending at line 17, I have defined a controller class named PlaylistController. 
  * This class has two private fields (_playlistRepository and _songRepository) 
  * injected through its constructor. 
- * These repositories will be responsible for interacting with the data storage (presumably a database) for playlists and songs. 
+ * These repositories will be responsible for interacting with the data storage in mySQL for playlists and songs. 
  * The Songs property is a list of Song objects, 
- * presumably used to store and pass song data within the controller.
-public IActionResult UpdateProduct(int id)
-{
-    Product prod = repo.GetProduct(id);
-    if (prod == null)
-    {
-        return View("ProductNotFound");
-    }
-    return View(prod);
-}
+ * used to store and pass song data within the controller.
 
  */

@@ -21,12 +21,13 @@ public class MyPlaylistController : Controller
     }
 
     public IActionResult Index(int playlistId, string playlistName)
-    {//query the songs for the given playlistId(MySongs table) -- do a JOIN on the SongId and FILTER by playlistId var songs = new List<Song>();
+    {//query the songs for the given playlistId(MySongs table)
+     //-- do a JOIN on the SongId and FILTER by playlistId var songs = new List<Song>();
         var songs = new List<Song>();
 
         try
         {
-            //songs = _mySongRepository.GetSongsByPlaylistId(playlistId);
+            songs = _mySongRepository.GetSongsByPlaylistId(playlistId); //commented out before updatedv on 1/8
         }
         catch (Exception e)
         {
@@ -42,13 +43,13 @@ public class MyPlaylistController : Controller
         });
     }
 
-    [HttpPost]
+    [HttpPost] //stateless
     public IActionResult UpdatePlaylistOnPost(string playlistName)
-    {
+    {//update the playlist name in the database
         var playlist = new Playlist()
         {
             ModifiedAt = DateTime.Now,
-            Id = playlistName,
+            Name = playlistName
         };
         try
         {
@@ -62,12 +63,12 @@ public class MyPlaylistController : Controller
         return RedirectToAction("UpdateSuccessful");
     }
 
-    [HttpPost]
+    [HttpPost] //stateless
     public IActionResult DeletePlaylistOnPost(int playlistId)
     {       // Delete the playlist from the database
         try
         {
-            //_playlistRepository.DeletePlaylist(playlistId);
+            _playlistRepository.DeletePlaylist(playlistId);
         }
         catch (Exception e)
         {
@@ -88,3 +89,8 @@ public class MyPlaylistController : Controller
     }
 }
 
+// Line 37 - ViewData["PlaylistId"] = playlistId;
+// The reason we add this value to the view data so that we can use the id
+// for delete and update actions (HTTP is stateless) // see:
+// https://en.wikipedia.org/wiki/Stateless_protocol
+// return the songs to the View
