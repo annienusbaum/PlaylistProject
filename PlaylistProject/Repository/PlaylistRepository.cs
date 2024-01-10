@@ -15,7 +15,7 @@ namespace PlaylistProject
 
         public int CreatePlaylist(Playlist playlist)
         {
-            return _connection.QuerySingle("INSERT INTO playlists (Name, CreatedAt, ModifiedAt) VALUES (@Name, @CreatedAt, @ModifiedAt); SELECT LAST_INSERT_ID();)", new { playlist.Name, playlist.CreatedAt, playlist.ModifiedAt });
+            return _connection.Execute("INSERT INTO playlists (Name, CreatedAt, ModifiedAt) VALUES (@Name, @CreatedAt, @ModifiedAt)", new { playlist.Name, playlist.CreatedAt, playlist.ModifiedAt });
         }
         //maybe have to put a return type on the QuerySingle - try Query<int>
         public IEnumerable<Playlist> GetPlaylists()
@@ -55,7 +55,7 @@ new NotImplementedException();
             return _connection.QuerySingle("INSERT INTO playlists (Name, CreatedAt, ModifiedAt) VALUES (@Name, @CreatedAt, @ModifiedAt); SELECT LAST_INSERT_ID();)", new { Name = playlist.Name, CreatedAt = playlist.CreatedAt, ModifiedAt = playlist.ModifiedAt });
 
 return _connection.Query("INSERT INTO playlists (Name, CreatedAt, ModifiedAt) VALUES (@Name, @CreatedAt, @ModifiedAt); SELECT LAST_INSERT_ID();)", new { Name = playlist.Name, CreatedAt = playlist.CreatedAt, ModifiedAt = playlist.ModifiedAt });
-
-
+SELECT LAST_INSERT_ID() AS id
+SELECT LAST_INSERT_ID() AS id
 "UPDATE MySongs SET Id = @Id, PlaylistId = @playlistid, SongId = @SongId"
  */

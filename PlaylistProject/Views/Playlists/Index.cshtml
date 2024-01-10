@@ -1,0 +1,17 @@
+﻿@using PlaylistProject.Controllers
+@model IEnumerable<Playlist>
+
+@{
+    ViewData["Title"] = "Playlist";
+}
+
+<h1>My Saved Playlists</h1>
+
+<ul>
+    @foreach (var playlist in Model)
+    {
+    <li>
+        <a asp-route-id="@playlist.Id">@playlist.Name</a>
+    </li>
+    }
+</ul>

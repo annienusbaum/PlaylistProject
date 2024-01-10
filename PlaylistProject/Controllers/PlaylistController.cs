@@ -42,8 +42,9 @@ namespace PlaylistProject.Controllers
         [HttpPost]
         public IActionResult SavePlaylistOnPost(string playlistName)
 
-        {//Save the playlist
-            var playlist = new Playlist()
+        {
+            //Save the playlist
+            Playlist playlist = new Playlist()
             {//(originally was) Name = myPlaylist.PlaylistName. changed to Id=
                 CreatedAt = DateTime.Now,
                 Name = playlistName
@@ -52,45 +53,21 @@ namespace PlaylistProject.Controllers
             int newPlaylistId;
             try
             {
-                newPlaylistId = _playlistRepository.CreatePlaylist(playlist); // PUT BREAKPOINTS HERE LINE 55
+                _playlistRepository.CreatePlaylist(playlist);
+                // PUT BREAKPOINTS HERE LINE 55
                 //Will need to return the id of the new playlist. see learndapper query
                 //selecting scarlar-values
+
+                return RedirectToAction("Index", "Playlists");
             }
             catch (Exception e)
             {
                 Console.WriteLine(e);
-                //throw & delete line below
-                return RedirectToPage("Error");
-            }
-            //Get the song ids submitted with the form
-            if (Request.Form.TryGetValue("song.SongID", out var songIds)) //PUT BREAKPOINT HERE AT 66
-            {
-                var mySongs = new List<MySong>();
-                foreach (var songId in songIds) //make sure that each song id is of type int
-                {
-                    if (int.TryParse(songId, out var id))
-                    {//Add the new song to my MySongs
-                        mySongs.Add(new MySong() { PlaylistId = newPlaylistId, SongId = id });
-                    }
-                    //Save my songs to the MySongs table
-                    //loop - insert data into the loop
-                    //foreach - passing in a list into mysongs and a list in
-                    try
-                    {
-                        //_songRepository.AddSongs(mySongs);
-                    }
-                    catch (Exception e)
-                    {
-                        Console.WriteLine(e);
-                        throw;
-                    }
-                    return RedirectToAction("Index", "MyPlaylist", new { PlaylistId = playlist.Id, PlaylistName = playlist.Id }); // try playlist.Name? originally in Will's guide
-                }
-                //something went wrong reload the page.
-                return RedirectToAction("Index");
-            }
 
-            return RedirectToPage("Error");
+                return RedirectToPage("/Error");
+                //throw & delete line below
+
+            }
         }
     }
 

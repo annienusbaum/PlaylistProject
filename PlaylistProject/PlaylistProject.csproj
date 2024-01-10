@@ -16,11 +16,13 @@
     <None Remove="Repository\" />
     <None Remove="Views\Playlist\" />
     <None Remove="Views\MyPlaylist\" />
+    <None Remove="Views\Playlists\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Repository\" />
     <Folder Include="Views\Playlist\" />
     <Folder Include="Views\MyPlaylist\" />
+    <Folder Include="Views\Playlists\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\.editorconfig" />
