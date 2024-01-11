@@ -22,12 +22,11 @@ public class MyPlaylistController : Controller
 
     public IActionResult Index(int playlistId, string genre, string playlistName)
     {//query the songs for the given playlistId(MySongs table)
-     //-- do a JOIN on the SongId and FILTER by playlistId var songs = new List<Song>();
         var songs = new List<Song>();
 
         try
         {
-            songs = _mySongRepository.GetSongsByGenre(genre); //commented out before updatedv on 1/8
+            songs = _mySongRepository.GetSongsByGenre(genre);
         }
         catch (Exception e)
         {
@@ -92,8 +91,3 @@ public class MyPlaylistController : Controller
     }
 }
 
-// Line 37 - ViewData["PlaylistId"] = playlistId;
-// The reason we add this value to the view data so that we can use the id
-// for delete and update actions (HTTP is stateless) // see:
-// https://en.wikipedia.org/wiki/Stateless_protocol
-// return the songs to the View

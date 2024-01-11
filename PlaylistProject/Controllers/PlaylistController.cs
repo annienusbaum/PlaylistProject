@@ -45,7 +45,7 @@ namespace PlaylistProject.Controllers
         {
             //Save the playlist
             Playlist playlist = new Playlist()
-            {//(originally was) Name = myPlaylist.PlaylistName. changed to Id=
+            {
                 CreatedAt = DateTime.Now,
                 Name = playlistName,
                 Genre = genre
@@ -55,9 +55,7 @@ namespace PlaylistProject.Controllers
             try
             {
                 _playlistRepository.CreatePlaylist(playlist);
-                // PUT BREAKPOINTS HERE LINE 55
-                //Will need to return the id of the new playlist. see learndapper query
-                //selecting scarlar-values
+
 
                 return RedirectToAction("Index", "Playlists");
             }
@@ -66,7 +64,6 @@ namespace PlaylistProject.Controllers
                 Console.WriteLine(e);
 
                 return RedirectToPage("/Error");
-                //throw & delete line below
 
             }
 
@@ -76,13 +73,3 @@ namespace PlaylistProject.Controllers
 
 }
 
-
-/*
- * (ending at line 17, I have defined a controller class named PlaylistController. 
- * This class has two private fields (_playlistRepository and _songRepository) 
- * injected through its constructor. 
- * These repositories will be responsible for interacting with the data storage in mySQL for playlists and songs. 
- * The Songs property is a list of Song objects, 
- * used to store and pass song data within the controller.
-
- */

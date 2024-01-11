@@ -15,9 +15,4 @@ namespace PlaylistProject
 
 }
 
-//interfaces for each class. reason we have them is for testing
 
-//good practice to use interfaces with dependancy injection
-//can swap out the class
-//implementations to ensure you don't mess up the code //good to have interfaces
-//if your classes have methods
