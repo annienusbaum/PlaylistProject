@@ -20,7 +20,7 @@
     <button asp-action="DeletePlaylistOnPost" class="btn btn-danger btn-lg mb-3">
         Delete playist
     </button>
-    <input type="hidden" aria-hidden="True" class="d-none" name="PlaylistId"
+    <input type="hidden" aria-hidden="True" class="d-none" asp-for="@Model.Id"
            value="@ViewData["PlaylistId"]" />
     <table class="table">
         <thead>

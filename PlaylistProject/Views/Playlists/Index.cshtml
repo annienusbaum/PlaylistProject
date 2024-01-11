@@ -11,7 +11,7 @@
     @foreach (var playlist in Model)
     {
     <li>
-        <a asp-route-id="@playlist.Id">@playlist.Name</a>
+        <a asp-controller="MyPlaylist" asp-action="Index" asp-route-playlistName="@playlist.Name" asp-route-playlistId="@playlist.Id" asp-route-genre="@playlist.Genre">@playlist.Name</a>
     </li>
     }
 </ul>

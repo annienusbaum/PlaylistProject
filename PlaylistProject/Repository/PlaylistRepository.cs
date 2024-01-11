@@ -15,7 +15,7 @@ namespace PlaylistProject
 
         public int CreatePlaylist(Playlist playlist)
         {
-            return _connection.Execute("INSERT INTO playlists (Name, CreatedAt, ModifiedAt) VALUES (@Name, @CreatedAt, @ModifiedAt)", new { playlist.Name, playlist.CreatedAt, playlist.ModifiedAt });
+            return _connection.Execute("INSERT INTO playlists (Name, Genre, CreatedAt, ModifiedAt) VALUES (@Name, @Genre, @CreatedAt, @ModifiedAt)", new { playlist.Name, playlist.Genre, playlist.CreatedAt, playlist.ModifiedAt });
         }
         //maybe have to put a return type on the QuerySingle - try Query<int>
         public IEnumerable<Playlist> GetPlaylists()
@@ -25,14 +25,14 @@ namespace PlaylistProject
 
         public int UpdatePlaylist(Playlist playlist)
         {
-            return _connection.ExecuteScalar<int>("UPDATE Playlists SET Name=@Name Where Id = @Id”, new {playlist.Name}", new { Id = playlist.Id, PlaylistId = playlist.Id, SongId = playlist.SongId }); //anonynomous object
+            return _connection.ExecuteScalar<int>("UPDATE Playlists SET Name=@Name Where Id=@Id", new { Name = playlist.Name, Id = playlist.Id }); //anonynomous object
 
         }
 
 
         public int DeletePlaylist(int playlistId)
         {
-            return _connection.Execute("DELETE FROM Playlist WHERE Id = @Id, PlaylistId = @playlistid, SongId = @SongId", new { Id = playlistId });
+            return _connection.Execute("DELETE FROM Playlists WHERE Id = @Id", new { Id = playlistId });
         }
 
     }

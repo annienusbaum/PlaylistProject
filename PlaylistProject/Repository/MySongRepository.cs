@@ -35,7 +35,7 @@ namespace PlaylistProject.Models
 
         public void UpdatePlaylist(Playlist playlist)
         {
-            _connection.Execute("UPDATE MySong SET Id = @Id, PlaylistId = @PlaylistId, SongId = @SongId WHERE Id = @Id", new { Id = playlist.Id, SongId = playlist.SongId, ModifiedAt = DateTime.Now });
+            _connection.Execute("UPDATE MySong SET Id = @Id, PlaylistId = @PlaylistId, SongId = @SongId WHERE Id = @Id", new { Id = playlist.Id, ModifiedAt = DateTime.Now });
 
             //    _connection.Execute("UPDATE MySong SET Id = @Id, PlaylistId = @PlaylistId, SongId = @SongId WHERE Id = @Id", new { Id = playlist.Id, PlaylistId = playlist.PlaylistId, SongId = playlist.SongId });
 

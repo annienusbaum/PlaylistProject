@@ -10,8 +10,8 @@
     <label class="form-label d-block">
         Playlist Name
         <input asp-for="PlaylistName" class="form-control form-control-lg" type="text"
-               placeholder="Enter a name for you playlist" aria-label=".form-control-lg
-example">
+               placeholder="Enter a name for you playlist" aria-label=".form-control-l example">
+        <input class="d-none" aria-hidden="true" asp-route-genre="@Model.Songs.First().Genre" asp-for="@Model.Songs.First().Genre" />
     </label> <button asp-action="SavePlaylistOnPost" class="btn btn-primary btn-lg mb-3">
         Save
         playlist
@@ -43,7 +43,7 @@ example">
                             <iframe width="560" height="315" src="@song.Video" title="YouTube video player"
                                     frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-inpicture; web-share" allowfullscreen></iframe>
                         </td>
-          }
+             }
                 </tr>
             }
         </tbody>

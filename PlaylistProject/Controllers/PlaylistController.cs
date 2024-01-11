@@ -40,14 +40,15 @@ namespace PlaylistProject.Controllers
         }
 
         [HttpPost]
-        public IActionResult SavePlaylistOnPost(string playlistName)
+        public IActionResult SavePlaylistOnPost(string playlistName, string genre)
 
         {
             //Save the playlist
             Playlist playlist = new Playlist()
             {//(originally was) Name = myPlaylist.PlaylistName. changed to Id=
                 CreatedAt = DateTime.Now,
-                Name = playlistName
+                Name = playlistName,
+                Genre = genre
             };
 
             int newPlaylistId;
@@ -68,7 +69,9 @@ namespace PlaylistProject.Controllers
                 //throw & delete line below
 
             }
+
         }
+
     }
 
 }
